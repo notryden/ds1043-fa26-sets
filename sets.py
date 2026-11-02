@@ -59,10 +59,11 @@ def memo_fib(n: int, memo: dict) -> int:
     "Calculate the n-th member of the Fibonacci Sequence, but save work using a dictionary"
     if n < 0:
         raise ValueError("The Fibonacci Sequence is not defined for n < 0")
-    # TODO: logic on memo{}
+    if n < 2:
+        return n
     if n in memo:
         return memo[n]
-
+    memo[n] = memo_fib(n - 1, memo) + memo_fib(n - 2, memo)
     return fib(n)
 
 # Run an experiment using the debugger to compare the stack usage of the basic
@@ -74,4 +75,4 @@ def memo_fib(n: int, memo: dict) -> int:
 
 if __name__ == '__main__':
     # find_needle()
-    print(fib(7))
+    print(memo_fib(7, {}))

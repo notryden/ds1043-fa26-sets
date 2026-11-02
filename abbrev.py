@@ -7,16 +7,23 @@ Scan a file for known "abbreviations" and replace those with the full word. May 
 
 def load_abbrevs(filename: str) -> dict[str, str]:
     """Load a Tab Separated Values file containing substrings for replacement"""
-    return {'': ''}
+    abbrevs = {}
+    with open(filename, "rt") as file:
+        for line in file.readlines():
+            split_line = line.split('\t')
+            abbrevs[split_line[0]] = split_line[1]
+    return abbrevs
 
 
 def read_textfile(filename:str) -> list[str]:
     """Read a text file for substring replacement"""
+    # TODO: ???
     return ['']
 
 
 def write_textfile(lines: list[str], filename: str) -> None:
     """Write out the corrected text"""
+    # TODO: DO
     return
 
 

@@ -17,13 +17,26 @@ def load_abbrevs(filename: str) -> dict[str, str]:
 
 def read_textfile(filename:str) -> list[str]:
     """Read a text file for substring replacement"""
-    # TODO: ???
-    return ['']
+    with open(filename, "rt") as file:
+        text = file.readlines()
+    return text
 
 
 def write_textfile(lines: list[str], filename: str) -> None:
     """Write out the corrected text"""
-    # TODO: DO
+    text = []
+    for line in lines:
+        temp = []
+        words = line.split()
+        for word in words:
+            if word in abbrevs:
+                temp.append(abbrevs[word])
+            else:
+                temp.append(word)
+        new_temp = ' '.join(temp)
+        text.append(new_temp)
+    with open(filename, "wt") as file:
+        file.writelines(text)
     return
 
 
